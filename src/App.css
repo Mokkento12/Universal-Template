@@ -8,3 +8,14 @@
   padding: 20px;
   box-sizing: border-box;
 }
+
+.container {
+  max-width: 1200px;
+  /* Максимальная ширина страницы */
+  margin: 0 auto;
+  /* Центрирование по горизонтали */
+  padding: 20px;
+  /* Внутренние отступы */
+  box-sizing: border-box;
+  /* Учитываем padding в размер */
+}
