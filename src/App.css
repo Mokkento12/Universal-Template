@@ -19,3 +19,33 @@
   box-sizing: border-box;
   /* Учитываем padding в размер */
 }
+
+/* Общие стили */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app.light {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+.app.dark {
+  background-color: #181818;
+  color: #fff;
+}
+
+.theme-button {
+  padding: 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.theme-button:hover {
+  background-color: #0056b3;
+}

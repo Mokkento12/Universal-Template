@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
+  const { toggleTheme } = useContext(ThemeContext);
   return (
     <header className="header">
       <a href="/" className="logo">
         UniversalTemplate
       </a>
+      <button onClick={toggleTheme} className="theme-button">
+        Toggle Theme
+      </button>
       <nav>
         <NavLink
           to="/"
