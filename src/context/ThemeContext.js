@@ -1,13 +1,15 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const ThemeContext = createContext();
 
-export const ThemeProvider = ({ children }) => {
+const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
+    // Проверяем localStorage и задаём тему по умолчанию
     return localStorage.getItem("theme") || "light";
   });
 
   useEffect(() => {
+    // Сохраняем тему в localStorage при её изменении
     localStorage.setItem("theme", theme);
   }, [theme]);
 
@@ -21,3 +23,5 @@ export const ThemeProvider = ({ children }) => {
     </ThemeContext.Provider>
   );
 };
+
+export default ThemeProvider;
