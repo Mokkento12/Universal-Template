@@ -26,6 +26,11 @@ const ContactForm = () => {
     if (Object.keys(errors).length === 0) {
       console.log({ name, email, message });
       // Здесь можно отправить данные на сервер
+
+      // Очищаем форму после успешной отправки
+      setName("");
+      setEmail("");
+      setMessage("");
     }
   };
 
