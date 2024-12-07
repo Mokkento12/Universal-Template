@@ -1,39 +1,32 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import "./ContactForm.css";
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [errors, setErrors] = useState({});
 
-  // Отслеживает изменения в полях ввода и обновляет состояние.
+  const validate = () => {
+    const errors = {};
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+    if (!name) errors.name = "Name is required";
+    if (!email) errors.email = "Email is required";
+    if (!message) errors.message = "Message is required";
 
-    setFormData({ ...formData, [name]: value });
+    return errors;
   };
-
-  // Перехватывает стандартное поведение формы и выводит данные в консоль.
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { name, email, message } = formData;
 
-    if (!/^[\w.%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
-      alert("Invalid email address");
-      return;
+    const errors = validate();
+    setErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      console.log({ name, email, message });
+      // Здесь можно отправить данные на сервер
     }
-
-    if (name.trim() === "" || message.trim() === "") {
-      alert("All fields are required!");
-      return;
-    }
-
-    console.log("Form submitted successfully:", formData);
   };
 
   return (
@@ -47,29 +40,32 @@ const ContactForm = () => {
           <input
             type="text"
             name="name"
-            value={formData.name}
-            onChange={handleChange}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
           />
+          {errors.name && <p className="error">{errors.name}</p>}
         </label>
         <label>
           Email:
           <input
             type="email"
             name="email"
-            value={formData.email}
-            onChange={handleChange}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
+          {errors.email && <p className="error">{errors.email}</p>}
         </label>
         <label>
           Message:
           <textarea
             name="message"
-            value={formData.message}
-            onChange={handleChange}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             required
           />
+          {errors.message && <p className="error">{errors.message}</p>}
         </label>
         <button type="submit">Send</button>
       </form>
