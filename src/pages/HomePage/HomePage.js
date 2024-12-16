@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Slider from "../../components/Slider/Slider";
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -25,7 +26,7 @@ const HomePage = () => {
 
   const handleMouseDown = (e) => {
     if (e.button !== 0) return; // Проверка: только левая кнопка мыши
-    e.preventDefault();
+    e.preventDefault(); // Отменяем выделение текста при клике
     setDragging(true);
     setOffset({
       x: e.clientX - position.x,
@@ -60,6 +61,7 @@ const HomePage = () => {
       <h1>{message}</h1>
       <p>This is a universal React project starter template.</p>
       <button onClick={changeMessage}>Change message!</button>
+      <Slider />
       {weather ? (
         <div
           className="weather-widget"
