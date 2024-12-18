@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Slider from "../../components/Slider/Slider";
+import useWindowSize from "../../hooks/useWindowSize";
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -8,6 +9,8 @@ const HomePage = () => {
   const [position, setPosition] = useState({ x: 50, y: 50 });
   const [dragging, setDragging] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
+
+  const { width, height } = useWindowSize();
 
   const changeMessage = () => {
     setMessage("Thank you for visiting!");
@@ -76,6 +79,11 @@ const HomePage = () => {
       ) : (
         <p>Loading weather data...</p>
       )}
+
+      <p>Current window size:</p>
+      <p>
+        Width: {width}px, Height: {height}px
+      </p>
     </div>
   );
 };
