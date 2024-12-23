@@ -6,7 +6,12 @@ import "./HomePage.css";
 const HomePage = () => {
   const [message, setMessage] = useState("Welcome to our website!");
   const [weather, setWeather] = useState(null);
-  const [position, setPosition] = useState({ x: 50, y: 50 });
+  const [position, setPosition] = useState(() => {
+    const initialX = window.innerWidth / 2 - 450; // Центр по ширине сдвинут влево на 50px
+    const initialY = window.innerHeight / 2 - 50; // Центр по высоте
+    return { x: initialX, y: initialY };
+  });
+
   const [dragging, setDragging] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
 
