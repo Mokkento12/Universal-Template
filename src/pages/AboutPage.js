@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 const AboutPage = () => {
-  const { user } = userContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   return (
     <div>
